@@ -4,7 +4,7 @@ const ButtonConfirm = () => {
   return (
     <button
       type="submit"
-      class="bg-sky-500 hover:bg-sky-700 py-2 px-4 rounded-full inline-flex items-center"
+      className="bg-sky-500 hover:bg-sky-700 py-2 px-4 rounded-full inline-flex items-center"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"

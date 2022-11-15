@@ -32,7 +32,7 @@ function App() {
 
   const handleFile = (e) => {
     let selectedFile = e.target.files[0];
-    // console.log(selectedFile.type);
+
     if (selectedFile) {
       if (selectedFile && allowedFiles.includes(selectedFile.type)) {
         let reader = new FileReader();
@@ -43,11 +43,10 @@ function App() {
         };
       } else {
         setPdfError("Archivo no válido, favor cargar archivo PDF");
+        reset();
         setpdfBase64("");
       }
-    } else {
-      console.log("please select a PDF");
-    }
+    } 
   };
 
   const handleClickDelete = () => {
@@ -59,14 +58,14 @@ function App() {
   const handleSubmit = (e) => {
     e.preventDefault();
     mutate({
-      pdfBase64: pdfBase64.substr("data:application/pdf;base64,".length),
+      pdfBase64: pdfBase64?.substr("data:application/pdf;base64,".length),
       myNIF: nif,
       myCompany: razonSocial,
     });
   };
 
   return (
-    <div className="bg-slate-400">
+    <div className="bg-slate-400 h-max">
       <div className="mx-auto   py-8 sm:px-6 lg:px-8  flex justify-center items-center h-screen">
         <div className="md:grid md:grid-cols-4 md:gap-6">
           <div className="mt-5 md:col-span-2 md:mt-0">
@@ -108,15 +107,15 @@ function App() {
                         onChange={(e) => {
                           setnif(e.target.value);
                         }}
-                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                        className="mt-1 block w-full  rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                       />
                     </div>
-                    <div className="col-span-6 sm:col-span-3 ">
-                      <label class="block ">
-                        <span class="sr-only">Seleccionar Archivo</span>
+                    <div className="col-span-6  ">
+                      <label className="block ">
+                        <span className="sr-only">Seleccionar Archivo</span>
                         <input
                           type="file"
-                          class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold  file:text-white  file:bg-sky-500 file:hover:bg-sky-700 file:cursor-pointer "
+                          className="block w-full text-sm text-gray-500 file:mr-4 file:py-2   focus:border-0  file:px-4 file:rounded-full file:border-transparent file:text-sm file:font-semibold  file:text-white  file:bg-sky-500 file:hover:bg-sky-700 file:cursor-pointer "
                           ref={inputFile}
                           onChange={handleFile}
                         />
@@ -148,7 +147,7 @@ function App() {
                       </div>
                     </div>
                   </div>
-                  <div className="grid grid-cols-6 gap-3 pt-3">
+                  <div className="grid 2xl:grid-cols-6 xl:grid-cols-4 sm:grid-cols-3 gap-4 pt-5">
                     <ButtonDelete onClick={handleClickDelete} />
                     <ButtonConfirm />
                   </div>
@@ -162,8 +161,8 @@ function App() {
                 <Spinner />
               ) : data ? (
                 <div className="flex flex-col justify-center items-center">
-                <Invoice data={data} show={showJSON}/>
-                <ButtonJSON onClick={handleShowJSON} title={showJSON? "Mostrar en formato JSON </>" :  "Mostrar factura"}/>
+                <Invoice data={data} showJSON={showJSON}/>
+                <ButtonJSON onClick={handleShowJSON} title={!showJSON? "Mostrar en formato JSON </>" :  "Mostrar factura"}/>
                 </div>
                               ) : (
                 <div className=" text-white"> No hay data disponible</div>

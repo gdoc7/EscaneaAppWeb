@@ -1,6 +1,6 @@
 import React from "react";
 
-const Invoice = ({ data, show }) => {
+const Invoice = ({ data, showJSON }) => {
   const options = { year: "numeric", month: "long", day: "numeric" };
 
   const changeformatDate = (date) => {
@@ -9,8 +9,8 @@ const Invoice = ({ data, show }) => {
 
   return (
     <>
-      {show ? (
-        <div className="mx-auto p-16 bg-white" style={{ "max-width": "800px" }}>
+      {!showJSON ? (
+        <div className="mx-auto p-16 bg-white max-w-[800px]  sm:min-w-[550px]" >
           <div className="flex items-center justify-between mb-8 px-3">
             <div>
               <span className="text-2xl font-bold"> Factura # {data.nif}</span>
@@ -23,9 +23,6 @@ const Invoice = ({ data, show }) => {
                 Fecha de emisión: {changeformatDate(data.issueDate)}
               </span>
             </div>
-            {/* <div className="text-right">
-          <img src="" />
-        </div> */}
           </div>
 
           <div className="flex-1 mb-8 px-3">

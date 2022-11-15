@@ -3,7 +3,7 @@ import React from 'react'
 export const ButtonJSON = ({onClick, title}) => {
   return (
     <button
-      class="bg-transparent font-bold py-2 hover:text-black rounded-full inline-flex items-center text-white"
+      className="bg-transparent font-bold py-2 hover:text-black rounded-full inline-flex items-center text-white"
       onClick={onClick}
     >
       {/* <svg
