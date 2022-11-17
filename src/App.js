@@ -53,6 +53,8 @@ function App() {
     inputFile.current.value = null;
     setpdfBase64(null);
     setPdfError("");
+    setnif("");
+    setrazonSocial("");
     reset();
   };
   const handleSubmit = (e) => {
@@ -161,7 +163,7 @@ function App() {
                 <Spinner />
               ) : data ? (
                 <div className="flex flex-col justify-center items-center">
-                <Invoice data={data} showJSON={showJSON}/>
+                <Invoice data={data} showJSON={showJSON} razonSocial={razonSocial} nif={nif}/>
                 <ButtonJSON onClick={handleShowJSON} title={!showJSON? "Mostrar en formato JSON </>" :  "Mostrar factura"}/>
                 </div>
                               ) : (
