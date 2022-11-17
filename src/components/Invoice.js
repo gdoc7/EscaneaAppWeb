@@ -1,19 +1,21 @@
 import React from "react";
 
-const Invoice = ({ data, showJSON }) => {
+const Invoice = ({ data, showJSON , razonSocial, nif}) => {
   const options = { year: "numeric", month: "long", day: "numeric" };
+  const currencySign = data.currencySign ? data.currencySign : " "; 
 
   const changeformatDate = (date) => {
-    return new Date(date).toLocaleString("en-US", options);
+    const dateFormat = new Date(date).toLocaleString("en-US", options);
+    return date ? dateFormat : " "
   };
 
   return (
     <>
       {!showJSON ? (
-        <div className="mx-auto p-16 bg-white max-w-[800px]  sm:min-w-[550px]" >
+        <div className="mx-auto p-10 bg-white max-w-[800px] lg:min-w-[500px] sm:min-w-fit " >
           <div className="flex items-center justify-between mb-8 px-3">
             <div>
-              <span className="text-2xl font-bold"> Factura # {data.nif}</span>
+              <span className="text-2xl font-bold"> Factura # {data?.invoice}</span>
               <br />
               <span className="text-sm text-gray-500">
                 Fecha de cargo: {changeformatDate(data.dueDate)}
@@ -27,9 +29,11 @@ const Invoice = ({ data, showJSON }) => {
 
           <div className="flex-1 mb-8 px-3">
             <div className="text-right">
-              {data.empresa}
+              {data?.empresa ?? razonSocial}
               <br />
-              {data.address}
+             NIF: {data?.nif ?? nif}
+                <br/>
+              {!data.address.length? "Direccion" : data.address}
               <br />
             </div>
           </div>
@@ -39,13 +43,13 @@ const Invoice = ({ data, showJSON }) => {
           <div className="flex justify-between mb-4  px-3 py-2">
             <div>Base imponible</div>
             <div className="text-right font-medium">
-              {data.amounts["taxableAmount"] + " " + data.currencySign}
+              {data.amounts["taxableAmount"] + " " + currencySign}
             </div>
           </div>
           <div className="flex justify-between mb-4 px-3 py-2">
             <div>IVA ({data.taxPercent}%)</div>
             <div className="text-right font-medium">
-              {data.amounts["tax"] + " " + data.currencySign}{" "}
+              {data.amounts["tax"] + " " + currencySign}{" "}
             </div>
           </div>
 
@@ -56,7 +60,7 @@ const Invoice = ({ data, showJSON }) => {
               <span className="">Total</span>:
             </div>
             <div className="text-2xl text-right font-black">
-              {data.amounts["total"] + " " + data.currencySign}
+              {data.amounts["total"] + " " + currencySign}
             </div>
           </div>
         </div>
