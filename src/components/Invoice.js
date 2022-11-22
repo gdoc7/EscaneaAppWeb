@@ -42,14 +42,14 @@ const Invoice = ({ data, showJSON , razonSocial, nif}) => {
 
           <div className="flex justify-between mb-4  px-3 py-2">
             <div>Base imponible</div>
-            <div className="text-right font-medium">
-              {data.amounts["taxableAmount"] ? data.amounts["taxableAmount"] : null + " " + currencySign}
+            <div className="text-right font-medium" >
+              {data.amounts["taxableAmount"] ? data.amounts["taxableAmount"]+ " " + currencySign  :  "-" + currencySign }
             </div>
           </div>
           <div className="flex justify-between mb-4 px-3 py-2">
             <div>IVA ({data.taxPercent}%)</div>
-            <div className="text-right font-medium">
-              {data.amounts["tax"] ? data.amounts["tax"] : null  + " " + currencySign}{" "}
+            <div className="text-right font-medium " >
+              {data.amounts["tax"] ? data.amounts["tax"] + " " + currencySign : "-" } 
             </div>
           </div>
 
@@ -60,7 +60,7 @@ const Invoice = ({ data, showJSON , razonSocial, nif}) => {
               <span className="">Total</span>:
             </div>
             <div className="text-2xl text-right font-black">
-              {data.amounts["total"] ?  data.amounts["total"]: null + " " + currencySign}
+              {data.amounts["total"] ?  data.amounts["total"]+ " " + currencySign : + "-" + currencySign}
             </div>
           </div>
         </div>
