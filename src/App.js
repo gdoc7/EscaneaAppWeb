@@ -49,7 +49,8 @@ function App() {
     } 
   };
 
-  const handleClickDelete = () => {
+  const handleClickDelete = (e) => {
+    e.preventDefault();
     inputFile.current.value = null;
     setpdfBase64(null);
     setPdfError("");
