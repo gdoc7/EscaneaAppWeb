@@ -31,7 +31,7 @@ const Invoice = ({ data, showJSON , razonSocial, nif}) => {
             <div className="text-right">
               {data.empresa ?? razonSocial}
               <br />
-              {  data.vat ? `VAT: ${data.vat}`  : `NIF: ${data.nif}`}
+              {  data.VAT ? `VAT: ${data.VAT}`  : `NIF: ${data.nif}`}
                 <br/>
               {!data.address?.length? "Direccion" : data.address}
               <br />
